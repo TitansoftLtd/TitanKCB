@@ -1,0 +1,236 @@
+{
+ "doctype": "DocType",
+ "name": "KCB Funds Transfer",
+ "module": "TitanKCB",
+ "engine": "InnoDB",
+ "field_order": [
+  "transaction_type",
+  "status",
+  "status_description",
+  "transaction_reference",
+  "amount",
+  "currency",
+  "parties_section",
+  "company_code",
+  "debit_account_number",
+  "credit_account_number",
+  "beneficiary_bank_code",
+  "beneficiary_details",
+  "payment_details",
+  "result_section",
+  "message_id",
+  "retrieval_ref_number",
+  "merchant_id",
+  "ft_reference",
+  "transaction_message",
+  "transaction_date",
+  "callback_count",
+  "link_section",
+  "reference_doctype",
+  "reference_name",
+  "payload_section",
+  "request_payload",
+  "response_payload",
+  "callback_payload"
+ ],
+ "fields": [
+  {
+   "fieldname": "transaction_type",
+   "fieldtype": "Select",
+   "label": "Transaction Type",
+   "options": "IF\nRT\nEF\nPL\nMO",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "IF: internal KCB transfer. RT: RTGS. EF: EFT. PL: Pesalink. MO: KCB account to M-PESA wallet.",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Queued\nSubmitted\nAccepted\nRejected\nSuccess\nFailed",
+   "default": "Queued",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "status_description",
+   "fieldtype": "Data",
+   "label": "Status Description",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transaction_reference",
+   "fieldtype": "Data",
+   "label": "Transaction Reference",
+   "reqd": 1,
+   "unique": 1,
+   "length": 12,
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Data",
+   "label": "Currency",
+   "default": "KES",
+   "read_only": 1
+  },
+  {
+   "fieldname": "parties_section",
+   "fieldtype": "Section Break",
+   "label": "Parties"
+  },
+  {
+   "fieldname": "company_code",
+   "fieldtype": "Data",
+   "label": "Company Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "debit_account_number",
+   "fieldtype": "Data",
+   "label": "Debit Account Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "credit_account_number",
+   "fieldtype": "Data",
+   "label": "Credit Account Number",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "beneficiary_bank_code",
+   "fieldtype": "Data",
+   "label": "Beneficiary Bank Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "beneficiary_details",
+   "fieldtype": "Data",
+   "label": "Beneficiary Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_details",
+   "fieldtype": "Data",
+   "label": "Payment Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "result_section",
+   "fieldtype": "Section Break",
+   "label": "KCB Result"
+  },
+  {
+   "fieldname": "message_id",
+   "fieldtype": "Data",
+   "label": "Message Id",
+   "read_only": 1
+  },
+  {
+   "fieldname": "retrieval_ref_number",
+   "fieldtype": "Data",
+   "label": "Retrieval Ref Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "merchant_id",
+   "fieldtype": "Data",
+   "label": "Merchant Id",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ft_reference",
+   "fieldtype": "Data",
+   "label": "FT Reference",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transaction_message",
+   "fieldtype": "Data",
+   "label": "Transaction Message",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transaction_date",
+   "fieldtype": "Datetime",
+   "label": "Transaction Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "callback_count",
+   "fieldtype": "Int",
+   "label": "Callback Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "link_section",
+   "fieldtype": "Section Break",
+   "label": "Reference"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Link",
+   "label": "Reference Doctype",
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Name",
+   "options": "reference_doctype",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payload_section",
+   "fieldtype": "Section Break",
+   "label": "Payloads (secrets masked)",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "request_payload",
+   "fieldtype": "Code",
+   "label": "Request Payload",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "response_payload",
+   "fieldtype": "Code",
+   "label": "Response Payload",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "callback_payload",
+   "fieldtype": "Code",
+   "label": "Callback Payload",
+   "options": "JSON",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "autoname": "KFT-.#####",
+ "title_field": "transaction_reference",
+ "search_fields": "transaction_reference,ft_reference,credit_account_number"
+}

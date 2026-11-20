@@ -1,0 +1,119 @@
+{
+ "doctype": "DocType",
+ "name": "KCB Settings",
+ "module": "TitanKCB",
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "environment",
+  "token_url",
+  "funds_transfer_url",
+  "credentials_section",
+  "consumer_key",
+  "consumer_secret",
+  "company_code",
+  "default_debit_account",
+  "request_timeout_seconds",
+  "callback_section",
+  "callback_url",
+  "callback_allowed_ips",
+  "test_connection"
+ ],
+ "fields": [
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "environment",
+   "fieldtype": "Select",
+   "label": "Environment",
+   "options": "Sandbox (UAT)\nProduction\nCustom",
+   "default": "Sandbox (UAT)",
+   "reqd": 1,
+   "description": "Sandbox pre-fills KCB's UAT URLs. Production host is not published: enter the URLs KCB gives you."
+  },
+  {
+   "fieldname": "token_url",
+   "fieldtype": "Data",
+   "label": "Token Url",
+   "reqd": 1,
+   "read_only_depends_on": "eval:doc.environment==\"Sandbox (UAT)\""
+  },
+  {
+   "fieldname": "funds_transfer_url",
+   "fieldtype": "Data",
+   "label": "Funds Transfer Url",
+   "reqd": 1,
+   "read_only_depends_on": "eval:doc.environment==\"Sandbox (UAT)\""
+  },
+  {
+   "fieldname": "credentials_section",
+   "fieldtype": "Section Break",
+   "label": "Credentials"
+  },
+  {
+   "fieldname": "consumer_key",
+   "fieldtype": "Data",
+   "label": "Consumer Key"
+  },
+  {
+   "fieldname": "consumer_secret",
+   "fieldtype": "Password",
+   "label": "Consumer Secret"
+  },
+  {
+   "fieldname": "company_code",
+   "fieldtype": "Data",
+   "label": "Company Code",
+   "default": "KE0010001"
+  },
+  {
+   "fieldname": "default_debit_account",
+   "fieldtype": "Data",
+   "label": "Default Debit Account",
+   "description": "KCB account debited when a request does not name one."
+  },
+  {
+   "fieldname": "request_timeout_seconds",
+   "fieldtype": "Int",
+   "label": "Request Timeout Seconds",
+   "default": "30"
+  },
+  {
+   "fieldname": "callback_section",
+   "fieldtype": "Section Break",
+   "label": "Callback"
+  },
+  {
+   "fieldname": "callback_url",
+   "fieldtype": "Data",
+   "label": "Callback URL",
+   "read_only": 1,
+   "description": "Register this URL with KCB as your FT Callback URL (must be public HTTPS for the real sandbox)."
+  },
+  {
+   "fieldname": "callback_allowed_ips",
+   "fieldtype": "Small Text",
+   "label": "Callback Allowed IPs",
+   "description": "Optional. One IP per line or comma separated. Empty = accept from anywhere. Check KCB's spec for how callbacks are authenticated."
+  },
+  {
+   "fieldname": "test_connection",
+   "fieldtype": "Button",
+   "label": "Test Connection"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "issingle": 1
+}

@@ -1,0 +1,120 @@
+{
+ "info": {
+  "_postman_id": "08706659-9ecc-4290-8c06-824679757d73",
+  "name": "Funds Transfer",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+ },
+ "item": [
+  {
+   "name": "Authentication",
+   "request": {
+    "auth": {
+     "type": "basic",
+     "basic": [
+      {
+       "key": "password",
+       "value": "<Enter Your Consumer Secret>",
+       "type": "string"
+      },
+      {
+       "key": "username",
+       "value": "<Enter your Consumer Key>",
+       "type": "string"
+      },
+      {
+       "key": "saveHelperData",
+       "value": true,
+       "type": "boolean"
+      },
+      {
+       "key": "showPassword",
+       "value": false,
+       "type": "boolean"
+      }
+     ]
+    },
+    "method": "POST",
+    "header": [
+     {
+      "key": "Authorization",
+      "value": "<REDACTED>",
+      "disabled": true
+     },
+     {
+      "key": "Cookie",
+      "value": "<REDACTED>",
+      "disabled": true
+     }
+    ],
+    "url": {
+     "raw": "https://uat.buni.kcbgroup.com/token?grant_type=client_credentials",
+     "protocol": "https",
+     "host": [
+      "uat",
+      "buni",
+      "kcbgroup",
+      "com"
+     ],
+     "path": [
+      "token"
+     ],
+     "query": [
+      {
+       "key": "grant_type",
+       "value": "client_credentials"
+      }
+     ]
+    }
+   },
+   "response": []
+  },
+  {
+   "name": "FundsTransfer",
+   "request": {
+    "auth": {
+     "type": "bearer",
+     "bearer": [
+      {
+       "key": "token",
+       "value": "<REDACTED sample JWT>",
+       "type": "string"
+      }
+     ]
+    },
+    "method": "POST",
+    "header": [
+     {
+      "key": "accept",
+      "value": "application/json"
+     },
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "raw",
+     "raw": "{\n\t\"beneficiaryDetails\": \"JOHN DOE\",\n\t\"companyCode\": \"KE0010001\",\n\t\"creditAccountNumber\": \"1279287799\",\n\t\"currency\": \"KES\",\n\t\"debitAccountNumber\": \"1279258233\",\n\t\"debitAmount\": 26.0,\n\t\"paymentDetails\": \"UT Fund withdrawal\",\n\t\"transactionReference\": \"FT1234567890\",\n\t\"transactionType\": \"IF\",\n\t\"beneficiaryBankCode\": \"01\"\n}"
+    },
+    "url": {
+     "raw": "https://uat.buni.kcbgroup.com/fundstransfer/1.0.0/api/v1/transfer",
+     "protocol": "https",
+     "host": [
+      "uat",
+      "buni",
+      "kcbgroup",
+      "com"
+     ],
+     "path": [
+      "fundstransfer",
+      "1.0.0",
+      "api",
+      "v1",
+      "transfer"
+     ]
+    }
+   },
+   "response": []
+  }
+ ]
+}

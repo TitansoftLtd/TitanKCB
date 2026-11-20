@@ -8,7 +8,7 @@ app_license = "gpl-3.0"
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["frappe"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -279,3 +279,7 @@ app_license = "gpl-3.0"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+
+# Consuming apps register a handler under this key in THEIR hooks.py:
+#   titan_kcb_funds_transfer_update = ["my_app.kcb.on_funds_transfer_update"]
+# Each handler is called with the KCB Funds Transfer doc, in a background job after the commit.
